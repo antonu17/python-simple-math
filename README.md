@@ -2,7 +2,7 @@
 
 This project is using `pyproject.toml` approach for configuring build system, described in [PEP-518](https://peps.python.org/pep-0518/). It is using [hatchling](https://pypi.org/project/hatchling/) build backend, configured per [PEP-517](https://peps.python.org/pep-0517/). The result of building is a wheel file.
 
-In order to comply with [PEP-668](https://peps.python.org/pep-0668/) enforced in Debian Bookwarm, we have 2 packaging options:
+In order to comply with [PEP-668](https://peps.python.org/pep-0668/) enforced in Debian Bookworm, we have 2 packaging options:
 
 - create a virtual environment and install wheel in there
 - create DEB package from wheel and install it using apt-get
