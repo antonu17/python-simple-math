@@ -1,0 +1,35 @@
+FROM python:3.11.4-alpine AS build
+
+RUN pip install pipenv
+
+ADD . /build
+WORKDIR /build
+
+RUN pipenv install --dev \
+ && pipenv run python -m build
+
+
+FROM debian:bookworm-20230814 as package
+
+WORKDIR /package
+
+COPY --from=build /build/dist/simple_math-*.whl ./
+
+RUN apt-get update && apt-get install -y fakeroot build-essential devscripts debhelper python3-venv
+RUN python3 -m venv --system-site-packages venv \
+ && . venv/bin/activate \
+ && pip install wheel2deb \
+ && wheel2deb \
+ && wheel2deb build
+
+
+FROM debian:bookworm-20230814
+
+COPY --from=package /package/output/python3-simple-math*.deb /tmp/dist/
+
+RUN apt-get update \
+ && dpkg --force-depends -i /tmp/dist/python3-simple-math*.deb \
+ && apt-get install -y -f \
+ && rm -rf /tmp/dist
+
+CMD ["add-cli"]
