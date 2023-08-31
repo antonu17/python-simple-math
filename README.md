@@ -28,7 +28,7 @@ Both images set `CMD ["add-cli"]` - a cli script provided by the wheel.
 
 The project is using [src-layout](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/).
 
-The project is using [pipenv](https://pipenv.pypa.io/en/latest/) for managing its virtualenv and dependencies
+The project is using [pipenv](https://pipenv.pypa.io/en/latest/) for managing its virtualenv and dependencies.
 
 wheel2deb is a tool that creates deb packages from python's built distribution format (wheel). There're 2 more tools available to create deb packates from python's source distribution format: [stdeb](https://pypi.org/project/stdeb/) and [py2deb](https://pypi.org/project/py2deb/)
 
